@@ -20,6 +20,9 @@ pipeline{
                 sh 'npm test' 
             }
         }
+        stage('Approval'){
+            input message: "Wanna approve?", ok: "Merge"
+        }
         stage('AWS Auth and Docker image build and push'){
             steps{
               withCredentials([
