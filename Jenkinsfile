@@ -3,7 +3,7 @@ pipeline{
     environment{
         DOCKER_IMAGE = "greet-node"
         DOCKER_TAG = "${BUILD_NUMBER}"
-        ECR = "502487623078.dkr.ecr.us-east-1.amazonaws.com"
+        ECR = "313476888052.dkr.ecr.us-east-1.amazonaws.com"
         AWS_DEFAULT_REGION = 'us-east-1'
         OUTPUT_FORMAT = "json"
     }
