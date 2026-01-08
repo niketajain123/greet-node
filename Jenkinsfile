@@ -21,6 +21,9 @@ pipeline{
             }
         }
         stage('Approval'){
+            steps{
+                echo "Waiting for approval..."
+            }
             input message: "Wanna approve?", ok: "Merge"
         }
         stage('AWS Auth and Docker image build and push'){
