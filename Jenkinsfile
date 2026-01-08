@@ -29,7 +29,7 @@ pipeline{
                         sh "set +x"
                         sh "aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR"
                         sh "docker build -t $DOCKER_IMAGE ."
-                        sh "docker tag $DOCKER_IMAGE:$DOCKER_TAG $ECR/$DOCKER_IMAGE:$DOCKER_TAG"
+                        sh "docker tag $DOCKER_IMAGE $ECR/$DOCKER_IMAGE:$DOCKER_TAG"
                         sh "docker push $ECR/$DOCKER_IMAGE:$DOCKER_TAG"
                 
                 }
