@@ -49,7 +49,9 @@ pipeline {
                         string(name: 'IMAGE_TAG', value: DOCKER_TAG),
                         string(name: 'IMAGE_REPO', value: "${ECR}/${DOCKER_IMAGE}")
                     ], wait: false
+                
                 }
+                echo "parameter passed"
             }
         }
     }
