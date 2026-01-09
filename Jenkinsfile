@@ -3,7 +3,7 @@ pipeline{
     environment{
         DOCKER_IMAGE = "greet-node"
         DOCKER_TAG = "${BUILD_NUMBER}"
-        ECR = "313476888052.dkr.ecr.us-east-1.amazonaws.com"
+        ECR = " 718394780433.dkr.ecr.us-east-1.amazonaws.com"
         AWS_DEFAULT_REGION = 'us-east-1'
         OUTPUT_FORMAT = "json"
     }
@@ -41,7 +41,18 @@ pipeline{
                 }
             }
         }
-        
-
+        post{
+            success{
+                script{
+                    if(env.BRANCH_NAME == 'main' ){
+                        build job: 'Continuous Deployment (K8S)', parameters: [
+                            string(name: 'IMAGE_TAG', value: DOCKER_TAG),
+                            string(name: 'IMAGE_REPO', value: "${ECR}/${DOCKER_IMAGE}")
+                        ], wait: false
+                    }
+                  }
+                }
+            }
+        }
     }
 }
